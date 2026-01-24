@@ -330,7 +330,9 @@ form button:hover {
   text-align: center;
   font-size: 14px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
