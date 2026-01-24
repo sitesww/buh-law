@@ -1,15 +1,15 @@
 
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --dark: #0f172a;
-  --text: #475569;
-  --bg-light: #f8fbff;
+  --primary: #2563eb;       /* Оставляем яркий синий для акцентов */
+  --primary-hover: #1e40af;
+  --dark: #020617;          /* Максимально глубокий темный */
+  --text: #334155;          /* Более контрастный серый текст */
+  --bg-light: #f8fafc;      /* Очень светлый, "ледяной" фон */
   --white: #ffffff;
-  /* Мягкая "цветная" тень вместо серой */
-  --shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.05);
+  --shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(37, 99, 235, 0.08);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* Дополнительно: можно сделать акцентные кнопки золотыми, если нужно */
 /* ================= RESET ================= */
 * {
   margin: 0;
@@ -326,27 +326,54 @@ a {
 
 /* ================= HERO ================= */
 
+/* =========================================
+   3. ГЛАВНЫЙ ЭКРАН (HERO) - ИСПРАВЛЕНО
+   ========================================= */
 .hero {
   position: relative;
-  height: 90vh;
+  /* 1. Уменьшаем высоту для компьютеров */
+  height: 600px;         /* Фиксированная высота смотрится аккуратнее, чем 85vh */
+  min-height: 50vh;      /* Но не меньше половины экрана */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрируем контент */
   overflow: hidden;
+  background: #000;      /* Фон черный, чтобы не было серых полос при загрузке */
 }
 
 .hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 2. Гарантируем отсутствие полос: видео центрируется и обрезается по краям */
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  /* Важнейшее свойство: заставляет видео заполнить весь блок, обрезая лишнее */
   object-fit: cover;
+  opacity: 0.5; /* Чуть темнее видео для лучшей читаемости текста */
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  /* Замените старый градиент на прозрачный или слегка затемненный */
-  background: rgba(0, 0, 0, 0.2); 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding: 0 20px; /* Добавим отступы по бокам на всякий случай */
 }
+
+/* Уменьшим размер заголовка на больших экранах, чтобы было аккуратнее */
+.hero-content h1 {
+  font-size: clamp(28px, 4vw, 52px); /* Немного уменьшили максимальный размер */
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  max-width: 800px; /* Ограничим ширину текста */
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 
 .hero-content {
@@ -357,12 +384,7 @@ a {
   margin: 0 auto;
 }
 
-.hero-content h1 {
-  font-size: 52px;
-  font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 20px;
-}
+
 
 .hero-content p {
   font-size: 19px;
@@ -641,10 +663,20 @@ html {
     display: flex;
   }
   
-  .hero-content h1 {
-    font-size: 34px;
+.hero {
+    height: 450px; /* Достаточно, чтобы показать заголовок и кнопку */
+    /* Или можно использовать aspect-ratio для современных браузеров: */
+    /* aspect-ratio: 4 / 5; height: auto; */
   }
 
+  .hero-content h1 {
+    font-size: 32px; /* Меньше шрифт на телефоне */
+  }
+  
+  .hero-content p {
+     font-size: 16px; /* Меньше подзаголовок */
+     padding: 0 10px;
+  }
   .services {
     padding: 50px 0;
   }
@@ -678,9 +710,7 @@ html {
     align-items: center;
     position: relative;
   }
-  .hero-content p {
-    font-size: 16px;
-  }
+  
 
   section {
     padding: 70px 0;
