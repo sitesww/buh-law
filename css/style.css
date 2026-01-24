@@ -207,7 +207,87 @@ a {
   color: #1e293b;
   padding-left: 10px;
 }
+/* Стили для изящного списка услуг */
+.service-list {
+  list-style: none; /* Убираем стандартные точки */
+  padding-left: 5px;
+  margin-top: 20px;
+}
 
+.service-list li {
+  position: relative;
+  padding-left: 30px; /* Место для нашей точки */
+  margin-bottom: 12px; /* Расстояние между пунктами */
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Создаем свою точку через псевдоэлемент */
+.service-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px; /* Выравниваем по высоте первой строки */
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary); /* Используем наш индиго/синий цвет */
+  border-radius: 50%; /* Делаем круглым */
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.3); /* Легкое свечение */
+}
+
+/* Стили для контентной части */
+.service-content p {
+  margin-bottom: 25px;
+  font-size: 18px;
+  color: #475569; /* Мягкий серый цвет */
+}
+
+/* Настройка списка */
+.check-list {
+  list-style: none; /* Убираем стандартные черные точки */
+  padding: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 35px;    /* Место для иконки/точки */
+  margin-bottom: 18px;   /* ОТСТУП МЕЖДУ СТРОКАМИ */
+  font-size: 16px;
+  line-height: 1.6;      /* Межстрочный интервал внутри одного пункта */
+  color: #1e293b;        /* Цвет текста потемнее для важности */
+  display: flex;
+  align-items: center;
+}
+
+/* Рисуем изящную точку (или галочку) */
+.check-list li::before {
+  content: "→";          /* Можно заменить на "" и сделать круг, как в прошлый раз */
+  position: absolute;
+  left: 0;
+  color: #4f46e5;        /* Ваш фирменный индиго/синий */
+  font-weight: bold;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Небольшой интерактив: точка двигается при наведении */
+.check-list li:hover::before {
+  transform: translateX(5px);
+}
+
+.check-list li:hover {
+  color: #4f46e5;
+  transition: 0.3s;
+}
+/* Эффект при наведении на пункт (необязательно, но красиво) */
+.service-list li:hover {
+  color: var(--dark);
+  transform: translateX(5px);
+  transition: var(--transition);
+}
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -639,8 +719,41 @@ form button:hover {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border: 1px solid #e2e8f0;
 }
+/* Единый стиль для списков во всех услугах */
+.custom-dots {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
 
+.custom-dots li {
+  position: relative;
+  padding-left: 28px;    /* Отступ от точки */
+  margin-bottom: 16px;   /* Отступ между строками */
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--dark);
+  transition: all 0.3s ease;
+}
 
+/* Создаем ту самую аккуратную точку */
+.custom-dots li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;              /* Выравнивание по центру первой строки */
+  width: 7px;
+  height: 7px;
+  background-color: var(--primary); /* Ваш фирменный синий/индиго */
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(79, 70, 229, 0.3); /* Легкое свечение */
+}
+
+/* Эффект при наведении */
+.custom-dots li:hover {
+  transform: translateX(5px);
+  color: var(--primary);
+}
 html {
   scroll-behavior: smooth;
 }
