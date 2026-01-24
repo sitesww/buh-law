@@ -105,7 +105,54 @@ a {
 }
 
 
+/* Стили для выпадающего меню */
+.dropdown {
+  position: relative;
+}
 
+.dropdown-menu {
+  display: none; /* Скрыто по умолчанию */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  min-width: 600px; /* Ширина как на скриншоте */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border: 1px solid #e5e7eb;
+  z-index: 1001;
+}
+
+/* Показываем при наведении */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки */
+  gap: 15px;
+}
+
+.dropdown-grid a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.dropdown-grid a:hover {
+  background: #f1f5f9;
+}
+
+.dropdown-grid img {
+  width: 24px;
+  height: 24px;
+}
 
 /* ================= HERO ================= */
 
@@ -124,11 +171,8 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(59, 130, 246, 0.45),
-    rgba(56, 189, 248, 0.55)
-  );
+  /* Замените старый градиент на прозрачный или слегка затемненный */
+  background: rgba(0, 0, 0, 0.2); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,9 +285,9 @@ section p {
   color: #475569;
 }
 .logo-img {
-  height: 85px;
+  height: 50px; /* Было 85px */
   width: auto;
-
+  
 }
 
 
