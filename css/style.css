@@ -43,10 +43,9 @@ a {
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1d4ed8
-;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .nav {
@@ -68,8 +67,8 @@ a {
 
 .phone {
   font-weight: 600;
-  color: #1d4ed8
-;
+  color: #1d4ed8;
+  white-space: nowrap;
 }
 
 /* ================= BURGER ================= */
@@ -106,15 +105,10 @@ a {
 }
 
 
-/* показываем на телефоне */
-@media (max-width: 768px) {
-  .burger {
-    display: flex;       /* Кнопка меню остается справа */
-    order: 3;            /* Гарантируем, что она будет последней */
-  }
-}
+
 
 /* ================= HERO ================= */
+
 .hero {
   position: relative;
   height: 90vh;
@@ -161,6 +155,7 @@ a {
   margin-bottom: 35px;
   color: #e0e7ff;
 }
+
 
 /* ================= BUTTON ================= */
 .btn-primary {
@@ -248,11 +243,7 @@ section p {
 .logo-img {
   height: 85px;
   width: auto;
-}
-@media (max-width: 768px) {
-  .logo-img {
-    height: 40px;
-  }
+
 }
 
 
@@ -342,21 +333,29 @@ form button:hover {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-.nav {
-    display: none; /* Скрыто изначально */
-    flex-direction: column;
-    position: absolute;
-    top: 72px; /* Высота вашей шапки */
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    padding: 20px;
-    gap: 15px;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-    z-index: 999;
-  }
 
+    .nav {
+      display: none; /* Прячем ссылки, чтобы они не выпадали как на фото */
+      flex-direction: column;
+      position: absolute;
+      top: 72px; 
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      padding: 20px;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      gap: 15px;
+    }
+
+ 
+  .nav a {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    width: 100%;
+  }
+  
   .nav.active {
     display: flex;
   }
@@ -365,20 +364,26 @@ form button:hover {
     font-size: 34px;
   }
 
-.phone {
-    display: block;      /* Возвращаем видимость */
-    margin-left: auto;   /* Прижимает телефон вправо к бургеру */
-    margin-right: 15px;  /* Отступ от телефона до иконки меню */
-    font-size: 13px;
-    white-space: nowrap;
+
+ .phone {
+    display: block;       /* Делаем номер видимым */
+    order: 2;            /* Управляем порядком внутри flex-контейнера */
+    font-size: 14px;     /* Немного уменьшим шрифт для мобильных */
+    margin: 0 auto;      /* Центрируем, если есть свободное место */
   }
-.header-inner {
+ 
+  .burger {
+    display: flex;       /* Кнопка меню остается справа */
+    order: 3;            /* Гарантируем, что она будет последней */
+  }
+
+ .header-inner {
+    height: 72px; /* Фиксируем высоту как на десктопе */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Нужно для правильного позиционирования меню */
+    position: relative;
   }
-}
   .hero-content p {
     font-size: 16px;
   }
@@ -386,3 +391,7 @@ form button:hover {
   section {
     padding: 70px 0;
   }
+  .logo-img {
+    height: 40px;
+  }
+}
