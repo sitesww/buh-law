@@ -45,46 +45,7 @@ a {
 .logo {
   font-size: 22px;
   font-weight: 800;
-  color: #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  color: #1d4ed8
 ;
 }
 
@@ -100,89 +61,14 @@ a {
 }
 
 .nav a:hover {
-  color: #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  color: #1d4ed8
 
 ;
 }
 
 .phone {
   font-weight: 600;
-  color: #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  color: #1d4ed8
 ;
 }
 
@@ -190,53 +76,42 @@ a {
 .burger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;   /* ← ВАЖНО */
+  gap: 6px;
   cursor: pointer;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 10px;
+  outline: none;
+  border: none;
 }
 
+.burger:focus,
+.burger:active {
+  outline: none;
+  box-shadow: none;
+}
+.burger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.3);
+}
 .burger span {
-  width: 26px;
+  width: 22px;
   height: 2px;
-  background: #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8
+  background: #1d4ed8;
+  border-radius: 2px;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;
+/* показываем на телефоне */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;       /* Кнопка меню остается справа */
+    order: 3;            /* Гарантируем, что она будет последней */
+  }
 }
 
 /* ================= HERO ================= */
@@ -404,45 +279,7 @@ form input:focus {
 form button {
   width: 100%;
   padding: 16px;
-  background: #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8 → #1d4ed8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  background: #1d4ed8
 ;
   color: #ffffff;
   border: none;
@@ -505,35 +342,43 @@ form button:hover {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .nav {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: #ffffff;
+.nav {
+    display: none; /* Скрыто изначально */
     flex-direction: column;
-    gap: 20px;
-    padding: 30px;
-    display: none;
+    position: absolute;
+    top: 72px; /* Высота вашей шапки */
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px;
+    gap: 15px;
     border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    z-index: 999;
   }
 
   .nav.active {
     display: flex;
   }
-
-  .phone {
-    display: none;
-  }
-
-  .burger {
-    display: flex;
-  }
-
+  
   .hero-content h1 {
     font-size: 34px;
   }
 
+.phone {
+    display: block;      /* Возвращаем видимость */
+    margin-left: auto;   /* Прижимает телефон вправо к бургеру */
+    margin-right: 15px;  /* Отступ от телефона до иконки меню */
+    font-size: 13px;
+    white-space: nowrap;
+  }
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Нужно для правильного позиционирования меню */
+  }
+}
   .hero-content p {
     font-size: 16px;
   }
@@ -541,4 +386,3 @@ form button:hover {
   section {
     padding: 70px 0;
   }
-}
