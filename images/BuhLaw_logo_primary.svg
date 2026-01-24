@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <defs>
+    <style>
+      .b{fill:none;stroke:#1F3A93;stroke-width:16;stroke-linecap:round;stroke-linejoin:round}
+      .t{fill:#00AFAA;stroke:none}
+      .text{font-family:Arial, sans-serif;font-size:160px;font-weight:700;fill:#00AFAA}
+      .textBlue{fill:#1F3A93}
+    </style>
+  </defs>
+  <path class="b" d="M120 300c80-60 160-60 240 0V120c-80-40-160-40-240 0z"/>
+  <path class="t" d="M242 228l-54-40c-6-5-7-14-2-20 5-6 14-7 20-2l33 25 56-63c5-6 14-6 20-1 6 5 6 14 1 20l-67 79c-6 7-16 8-23 2z"/>
+  <text x="420" y="265" class="text textBlue">Buh</text>
+  <text x="720" y="265" class="text">Law</text>
+</svg>

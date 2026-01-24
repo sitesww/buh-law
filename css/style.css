@@ -53,6 +53,11 @@ a {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* ================= HEADER ================= */
@@ -520,7 +525,63 @@ section p {
   max-width: 800px;
   color: #475569;
 }
+/* Общий контейнер для иконки и текста */
+.info-item {
+    display: flex;
+    align-items: center; /* Выравнивает иконку и текст по центру по вертикали */
+    gap: 15px;           /* Расстояние между иконкой и текстом */
+    background: #fff;    /* Белый фон карточки, как на скринах */
+    padding: 20px;
+    border-radius: 15px; /* Скругление как у остальных */
+    margin-bottom: 15px;
+}
 
+/* Стили для самой иконки */
+.info-item .icon img {
+    width: 24px;         /* Подбери размер под телефон/будильник */
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Стили для заголовка и ссылки внутри */
+.info-content h3 {
+    margin: 0 0 5px 0;   /* Убираем лишние отступы */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.info-link {
+    text-decoration: none;
+    color: #2563eb;      /* Твой синий цвет ссылки */
+    font-weight: 600;
+}
+
+.info-content h3 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text); /* Ваш мягкий серый цвет */
+  font-weight: 500;
+}
+
+.info-link {
+  text-decoration: none;
+  color: var(--primary); /* Ваш фирменный индиго/синий */
+  font-weight: 700;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.info-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* На мобильных устройствах */
+@media (max-width: 768px) {
+  .info-item {
+    padding-left: 20px; /* Чтобы не липло к левому краю, как вы просили */
+  }
+}
 /* ================= SERVICES ================= */
 .services-grid {
   display: grid;
@@ -721,38 +782,60 @@ form button:hover {
 }
 /* Единый стиль для списков во всех услугах */
 .custom-dots {
-  list-style: none;
+  list-style: none !important; /* Убирает черную точку */
   padding: 0;
   margin: 20px 0;
 }
 
 .custom-dots li {
   position: relative;
-  padding-left: 28px;    /* Отступ от точки */
-  margin-bottom: 16px;   /* Отступ между строками */
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--dark);
-  transition: all 0.3s ease;
+  padding-left: 45px;    /* Отступ текста от точки */
+  margin-bottom: 18px;   /* Отступ между строками */
+  list-style-type: none; /* Дополнительная страховка */
 }
 
-/* Создаем ту самую аккуратную точку */
+/* Наша изящная синяя точка остается здесь */
 .custom-dots li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 8px;              /* Выравнивание по центру первой строки */
-  width: 7px;
-  height: 7px;
-  background-color: var(--primary); /* Ваш фирменный синий/индиго */
+  left: 15px;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(79, 70, 229, 0.3); /* Легкое свечение */
+  box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
 }
 
 /* Эффект при наведении */
 .custom-dots li:hover {
   transform: translateX(5px);
   color: var(--primary);
+}
+/* Контейнер для ссылки с иконкой в футере */
+.footer-socials {
+    margin-top: 15px; /* Отступ от почты сверху */
+}
+
+.footer-socials a {
+    display: flex;         /* Включаем гибкую разметку */
+    align-items: center;   /* Выравниваем иконку и текст по центру */
+    gap: 10px;             /* Расстояние между иконкой и текстом */
+    text-decoration: none;
+    color: #fff;           /* Цвет текста в футере */
+    transition: 0.3s;
+}
+
+/* Настройка самой иконки в футере */
+.footer-socials img {
+    width: 20px;           /* Делаем иконку маленькой, под размер текста */
+    height: 20px;
+    display: block;
+    filter: brightness(0) invert(1); /* Сделает черную иконку белой под стиль футера */
+}
+
+.footer-socials a:hover {
+    opacity: 0.8;          /* Эффект при наведении */
 }
 html {
   scroll-behavior: smooth;
@@ -831,14 +914,37 @@ html {
     align-items: center;
     position: relative;
   }
+.custom-dots li {
+        font-size: 15px; /* Чуть меньше шрифт для узких экранов */
+        margin-bottom: 20px; /* Больше расстояния между пунктами для удобства чтения */
+    }
 
 
-  section {
+
+  .section {
     padding: 70px 0;
   }
   .logo-img {
     height: 40px;
   }
+  .advantages-section {
+    padding: 50px 0;
+}
 
-  .footer-grid, .contacts-layout { grid-template-columns: 1fr;  }
+.advantages-section h2 {
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    padding: 0 10px; /* Чтобы заголовок тоже не лип к краям */
+}
+
+  .footer-grid {
+        grid-template-columns: 1fr; /* Все колонки футера в ряд */
+        gap: 30px;
+        text-align: left;
+    }
+
+    .footer-col {
+        padding: 0 10px;
+    }
 }
