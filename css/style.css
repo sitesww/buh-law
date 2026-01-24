@@ -1,3 +1,15 @@
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --dark: #0f172a;
+  --text: #475569;
+  --bg-light: #f8fbff;
+  --white: #ffffff;
+  /* Мягкая "цветная" тень вместо серой */
+  --shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.05);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 /* ================= RESET ================= */
 * {
   margin: 0;
@@ -84,19 +96,18 @@ a {
 }
 
 .service-card {
-  background: #ffffff;
+  background: var(--white);
   padding: 40px;
   border-radius: 24px;
-  border: 2px solid transparent; /* Заранее создаем невидимую рамку */
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Плавное движение */
-  display: flex;
-  flex-direction: column;
+  border: 1px solid #f1f5f9;
+  transition: var(--transition);
+  height: 100%;
 }
 
 .service-card:hover {
-  transform: translateY(-10px); /* Карточка приподнимается */
-  border-color: #3b82f6; /* Появляется синяя рамка */
-  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15); /* Синее свечение */
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
 }
 
 .service-icon {
@@ -133,7 +144,7 @@ a {
 .service-icon-container {
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: #eff6ff;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -141,9 +152,8 @@ a {
   margin-bottom: 24px;
   transition: transform 0.3s ease;
 }
-
 .service-card:hover .service-icon-container {
-  transform: scale(1.1); /* Иконка слегка увеличивается при наведении на карточку */
+  transform: scale(1.1) rotate(5deg); /* Иконка чуть крутится */
 }
 
 .service-icon-img {
@@ -185,27 +195,29 @@ a {
 }
 
 .sidebar-nav a {
-  padding: 14px 20px;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  font-weight: 500;
+  padding: 16px 20px;
+  background: var(--white);
+  border: 1px solid #eef2f6;
+  border-radius: 14px;
+  font-weight: 600;
   color: #64748b;
-  transition: all 0.3s ease;
+  display: block;
+  transition: var(--transition);
 }
 
 .sidebar-nav a:hover {
-  border-color: #3b82f6;
-  color: #3b82f6;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateX(5px); /* Легкий сдвиг вправо */
   background: #f0f7ff;
 }
 
-/* Стиль для активной услуги (где сейчас находится пользователь) */
+
 .sidebar-nav a.active {
-  background: #3b82f6;
+  background: var(--primary);
   color: #fff;
-  border-color: #3b82f6;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  border-color: var(--primary);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
 }
 
 /* Блок с телефоном под меню */
@@ -266,23 +278,26 @@ a {
 }
 
 .dropdown-menu {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(10px); /* Смещение вниз */
   background: #ffffff;
-  min-width: 600px; /* Ширина как на скриншоте */
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  border: 1px solid #e5e7eb;
+  min-width: 550px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  border: 1px solid #f1f5f9;
   z-index: 1001;
+  opacity: 0;
+  transition: var(--transition);
 }
 
-/* Показываем при наведении */
 .dropdown:hover .dropdown-menu {
   display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Всплытие вверх */
 }
 
 .dropdown-grid {
@@ -358,19 +373,23 @@ a {
 
 /* ================= BUTTON ================= */
 .btn-primary {
-  background: #ffffff;
-  color: #3b82f6;
-  padding: 16px 40px;
-  border-radius: 999px;
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 18px 45px;
+  border-radius: 50px;
   font-weight: 700;
-  letter-spacing: 0.2px;
-  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+  transition: var(--transition);
 }
 
-
 .btn-primary:hover {
-  background: #eff6ff;
-  transform: translateY(-2px);
+  background: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
 }
 
 /* ================= SECTIONS ================= */
@@ -656,7 +675,6 @@ html {
   .logo-img {
     height: 40px;
   }
- 
-  .footer-grid, .contacts-layout { grid-template-columns: 1fr; 
-}
+
+  .footer-grid, .contacts-layout { grid-template-columns: 1fr;  }
 }
