@@ -85,18 +85,18 @@ a {
 
 .service-card {
   background: #ffffff;
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid #eef2f6;
-  transition: all 0.3s ease;
+  padding: 40px;
+  border-radius: 24px;
+  border: 2px solid transparent; /* Заранее создаем невидимую рамку */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Плавное движение */
   display: flex;
   flex-direction: column;
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
+  transform: translateY(-10px); /* Карточка приподнимается */
+  border-color: #3b82f6; /* Появляется синяя рамка */
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15); /* Синее свечение */
 }
 
 .service-icon {
@@ -159,16 +159,16 @@ a {
 /* Контейнер для двух колонок */
 .service-layout {
   display: grid;
-  grid-template-columns: 300px 1fr; /* Левая колонка 300px, правая — всё остальное */
+  grid-template-columns: 300px 1fr;
   gap: 40px;
-  padding: 60px 20px;
+  align-items: start; /* Важно для sticky */
 }
 
-/* Стили бокового меню */
+
 .service-sidebar {
   position: sticky;
-  top: 100px; /* Чтобы меню «прилипало» при скролле */
-  height: max-content;
+  top: 100px; /* Расстояние от верха экрана при скролле */
+  z-index: 10;
 }
 
 .service-sidebar h3 {
