@@ -463,7 +463,20 @@ section p {
   width: auto;
 
 }
+/* Состояние кнопки после успешной отправки */
+.sent-success {
+  background: #10b981 !important; /* Приятный зеленый цвет */
+  color: white !important;
+  cursor: default;
+  width: 100%; /* Растянем на всю ширину вместо исчезнувших полей */
+  transform: scale(1.05);
+  transition: all 0.4s ease;
+}
 
+/* Добавим плавности исчезновению инпутов */
+.cta form input {
+  transition: opacity 0.3s ease;
+}
 
 /* ================= FORM ================= */
 form {
