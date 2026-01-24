@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap');
 
+:root {
+  --primary: #6366f1;       /* Мягкий индиго */
+  --dark: #0f172a;          /* Глубокий сланец */
+  --text: #475569;          /* Спокойный серый */
+  --bg: #f8fafc;            /* Почти белый лед */
+  --white: #ffffff;
+  /* Тонкая многослойная тень */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--bg);
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
 :root {
   --primary: #2563eb;       /* Оставляем яркий синий для акцентов */
   --primary-hover: #1e40af;
@@ -95,19 +113,21 @@ a {
   gap: 25px;
 }
 
+/* Карточки услуг */
 .service-card {
   background: var(--white);
-  padding: 40px;
+  border: 1px solid rgba(0,0,0,0.03);
   border-radius: 24px;
-  border: 1px solid #f1f5f9;
+  padding: 32px;
   transition: var(--transition);
-  height: 100%;
+
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
   border-color: var(--primary);
-  box-shadow: var(--shadow);
+
 }
 
 .service-icon {
@@ -193,31 +213,28 @@ a {
   flex-direction: column;
   gap: 8px;
 }
-
+/* Боковое меню */
 .sidebar-nav a {
-  padding: 16px 20px;
-  background: var(--white);
-  border: 1px solid #eef2f6;
-  border-radius: 14px;
-  font-weight: 600;
-  color: #64748b;
-  display: block;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--text);
   transition: var(--transition);
 }
 
 .sidebar-nav a:hover {
-  border-color: var(--primary);
+  background: var(--white);
   color: var(--primary);
-  transform: translateX(5px); /* Легкий сдвиг вправо */
-  background: #f0f7ff;
+  box-shadow: var(--shadow);
+  transform: translateX(4px);
 }
 
 
 .sidebar-nav a.active {
   background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+  color: var(--white);
+  font-weight: 600;
 }
 
 /* Блок с телефоном под меню */
@@ -331,27 +348,20 @@ a {
    ========================================= */
 .hero {
   position: relative;
-  /* 1. Уменьшаем высоту для компьютеров */
-  height: 600px;         /* Фиксированная высота смотрится аккуратнее, чем 85vh */
-  min-height: 50vh;      /* Но не меньше половины экрана */
+  height: 550px; /* Уменьшили высоту для ПК */
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center; /* Центрируем контент */
-  overflow: hidden;
-  background: #000;      /* Фон черный, чтобы не было серых полос при загрузке */
+  background: #000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .hero-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  /* 2. Гарантируем отсутствие полос: видео центрируется и обрезается по краям */
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  /* Важнейшее свойство: заставляет видео заполнить весь блок, обрезая лишнее */
-  object-fit: cover;
-  opacity: 0.5; /* Чуть темнее видео для лучшей читаемости текста */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; /* Убирает серые полосы, растягивая видео */
+  opacity: 0.4;      /* Делает видео фоновым акцентом */
 }
 
 .hero-overlay {
@@ -664,9 +674,7 @@ html {
   }
   
 .hero {
-    height: 450px; /* Достаточно, чтобы показать заголовок и кнопку */
-    /* Или можно использовать aspect-ratio для современных браузеров: */
-    /* aspect-ratio: 4 / 5; height: auto; */
+    height: 380px; /* Еще меньше для телефонов */
   }
 
   .hero-content h1 {
@@ -710,7 +718,7 @@ html {
     align-items: center;
     position: relative;
   }
-  
+
 
   section {
     padding: 70px 0;

@@ -29,3 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+const form = document.querySelector('.cta form');
+
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Плавное исчезновение инпутов
+    const inputs = this.querySelectorAll('input');
+    const button = this.querySelector('button');
+    
+    inputs.forEach(input => {
+      input.style.opacity = '0';
+      input.style.transform = 'translateY(-10px)';
+      setTimeout(() => input.style.display = 'none', 300);
+    });
+
+    // Изменение кнопки
+    setTimeout(() => {
+      button.innerText = 'Заявка принята';
+      button.style.background = '#10b981'; // Изящный зеленый
+      button.style.width = '100%';
+      button.disabled = true;
+    }, 350);
+  });
+}
