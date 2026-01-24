@@ -55,28 +55,71 @@
       <span></span>
     </button> </div>
 </header>
-<section class="page">
-  <h1>Контакты</h1>
+<section class="contacts-page">
+  <div class="container">
+    <h1>Контактная информация</h1>
+    
+    <div class="contacts-layout">
+      <div class="contacts-info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <div>
+            <h3>Наш офис</h3>
+            <p>Узбекистан, г. Ташкент, Чиланзарский р-н, ул. Примерная, 10</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <div>
+            <h3>Телефон</h3>
+            <a href="tel:+998 97 701 11 99">+998 97 701 11 99</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="icon">⏰</span>
+          <div>
+            <h3>Режим работы</h3>
+            <p>Пн-Пт: 09:00 – 18:00</p>
+          </div>
+        </div>
+      </div>
 
-  <p>📍 Ташкент, Узбекистан</p>
-  <p>📞 +998 97 701 11 99</p>
-  <p>✉️ info@buh-law.uz</p>
-
-  <div class="map">
-    <!-- сюда позже вставишь Google Maps iframe -->
+      <div class="map-container">
+        <iframe src="https://yandex.uz/map-widget/v1/..." width="100%" height="450" frameborder="0"></iframe>
+      </div>
+    </div>
   </div>
 </section>
 <footer class="footer">
-  <p>© Buh-Law</p>
- <div class="socials">
-  <a href="https://t.me/USERNAME" target="_blank">
-    <img src="images/telegram.svg" alt="Telegram">
-  </a>
-  <a href="https://instagram.com/USERNAME" target="_blank">
-    <img src="images/instagram.svg" alt="Instagram">
-  </a>
-</div>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <img src="images/buhlaw_logo.png" alt="Buh-Law" class="footer-logo">
+      <p>Профессиональный бухгалтерский аутсорсинг и юридическая поддержка бизнеса в Узбекистане.</p>
+    </div>
 
+    <div class="footer-col">
+      <h4>Навигация</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="services.html">Все услуги</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <p>📍 Ташкент, Ваш адрес здесь</p>
+      <p>📞 <a href="tel:+998 97 701 11 99 ">+998 97 701 11 99 </a></p>
+      <p>✉️ info@buh-law.uz</p>
+      <div class="socials">
+        <a href="https://t.me/USERNAME"><img src="images/telegram.svg" alt="Telegram"></a>
+        <a href="#"><img src="images/instagram.svg" alt="Instagram"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Buh-Law. Все права защищены.</p>
+  </div>
 </footer>
 
 <script src="js/main.js"></script>
