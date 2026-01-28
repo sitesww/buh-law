@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Управление мобильным меню (Бургер)
+    // === 1. НАСТРОЙКИ ТЕЛЕГРАМ ===
+    const TELEGRAM_TOKEN = '8070334767:AAGcSITrZjkImBKXnl73xRB7MCg4Q1M9Aog';
+    const CHAT_ID = '1040123970';
+
+    // === 2. МОБИЛЬНОЕ МЕНЮ (БУРГЕР) ===
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
@@ -9,79 +13,104 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Управление выпадающим списком "Сервисы" (Dropdown) на мобилках
+    // === 3. ВЫПАДАЮЩИЙ СПИСОК "УСЛУГИ" (DROPDOWN) ===
     const dropdown = document.querySelector('.dropdown');
-    const dropdownToggle = document.querySelector('.dropdown > a');
+    const dropdownToggle = document.querySelector('.dropdown > a') || document.querySelector('.dropdown-toggle');
 
     if (dropdownToggle) {
         dropdownToggle.addEventListener('click', function(e) {
-            // Проверяем, что ширина экрана мобильная (до 768px)
+            // Работает только на мобильных (ширина меньше 768px)
             if (window.innerWidth <= 768) {
-                e.preventDefault(); // Останавливаем переход по ссылке
-                dropdown.classList.toggle('active'); // Открываем/закрываем вкладку
+                e.preventDefault();
+                dropdown.classList.toggle('active');
             }
         });
     }
 
-    // 3. Обработка формы (CTA)
-    const ctaForm = document.querySelector('.cta form');
+    // === 4. ОБРАБОТКА ФОРМЫ И ОТПРАВКА В ТЕЛЕГРАМ ===
+    const requestForm = document.getElementById('request-form');
 
-    if (ctaForm) {
-        ctaForm.addEventListener('submit', function(e) {
+    if (requestForm) {
+        requestForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const button = this.querySelector('button');
-            const inputs = this.querySelectorAll('input');
+            const btn = this.querySelector('button');
+            const nameInput = document.getElementById('user_name');
+            const phoneInput = document.getElementById('user_phone');
+            
+            const nameValue = nameInput.value.trim();
+            const phoneValue = phoneInput.value.trim();
 
-            // Эффект исчезновения полей
-            inputs.forEach(input => {
-                input.style.transition = 'all 0.3s ease';
-                input.style.opacity = '0';
-                input.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    input.style.display = 'none';
-                }, 300);
-            });
+            // --- ВАЛИДАЦИЯ (ФИЛЬТРЫ) ---
+            
+            // Проверка на заполненность
+            if (nameValue === '' || phoneValue === '') {
+                alert('Пожалуйста, заполните все поля');
+                return;
+            }
 
-            // Изменение кнопки после исчезновения полей
-            setTimeout(() => {
-                button.innerText = 'Заявка принята';
-                button.style.background = '#10b981';
-                button.style.width = '100%';
-                button.disabled = true;
-                button.classList.add('sent-success');
-            }, 350);
+            // Фильтр номера: только цифры, плюс и пробелы
+            const phoneRegex = /^[0-9+ ]+$/;
+            if (!phoneRegex.test(phoneValue)) {
+                alert('Ошибка: в номере телефона разрешены только цифры и знак "+"');
+                phoneInput.style.border = '2px solid #ef4444';
+                return;
+            } else {
+                phoneInput.style.border = ''; 
+            }
 
-            console.log('Форма успешно отправлена!');
+            // --- ПРОЦЕСС ОТПРАВКИ (КОЛБЭК) ---
+            btn.innerText = 'Отправка...';
+            btn.disabled = true;
+
+            const message = `🚀 Новая заявка!\n👤 Имя: ${nameValue}\n📞 Телефон: ${phoneValue}`;
+
+            try {
+                // Прямой запрос к API Telegram
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message
+                    })
+                });
+
+                if (response.ok) {
+                    // Эффект успеха: плавно скрываем инпуты
+                    const inputs = this.querySelectorAll('input');
+                    inputs.forEach(el => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(-10px)';
+                        el.style.transition = 'all 0.4s ease';
+                        setTimeout(() => el.style.display = 'none', 400);
+                    });
+
+                    // Поиск карточки для смены заголовка
+                    const box = this.closest('.cta-box') || this.closest('.cta-section') || this.closest('.cta-card');
+                    if (box) {
+                        const title = box.querySelector('h2');
+                        const desc = box.querySelector('p');
+                        if (desc) desc.style.transition = 'opacity 0.3s';
+                        if (desc) desc.style.opacity = '0';
+                        setTimeout(() => { if (desc) desc.style.display = 'none'; }, 300);
+                        if (title) title.innerText = 'Заявка принята!';
+                    }
+
+                    // Финальное состояние кнопки
+                    btn.innerText = 'Отправлено успешно';
+                    btn.style.background = '#10b981'; 
+                    btn.style.width = '100%';
+                    btn.style.marginTop = '20px';
+                } else {
+                    throw new Error('Сервер Telegram не ответил');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Ошибка при отправке. Проверьте интернет или настройки бота.');
+                btn.innerText = 'Попробовать снова';
+                btn.disabled = false;
+            }
         });
     }
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const requestForm = document.getElementById('request-form');
-
-  if (requestForm) {
-    requestForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const btn = this.querySelector('button');
-      const inputs = this.querySelectorAll('input');
-
-      btn.innerText = 'Отправка...';
-      btn.disabled = true;
-
-      // Имитация успешной отправки
-      setTimeout(() => {
-        inputs.forEach(el => {
-          el.style.opacity = '0';
-          setTimeout(() => el.style.display = 'none', 300);
-        });
-
-        this.querySelector('p').style.display = 'none';
-        this.querySelector('h2').innerText = 'Спасибо!';
-        
-        btn.innerText = 'Заявка принята';
-        btn.style.background = '#10b981'; 
-      }, 1200);
-    });
-  }
 });
