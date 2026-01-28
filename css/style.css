@@ -734,6 +734,40 @@ form button:hover {
 .socials img:hover {
   opacity: 1;
 }
+
+/* Контейнер для уведомлений */
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px); /* Прячем за экраном сверху */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 16px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 9999;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Прыгучая анимация */
+}
+
+/* Класс для показа */
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Стили для разных типов сообщений */
+.toast.error {
+    color: #ef4444;
+    border-left: 5px solid #ef4444;
+}
+
+.toast.success {
+    color: #10b981;
+    border-left: 5px solid #10b981;
+}
 .cta {
   background: #ffffff;
   display: flex;

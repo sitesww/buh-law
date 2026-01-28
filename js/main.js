@@ -3,7 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const TELEGRAM_TOKEN = '8070334767:AAGcSITrZjkImBKXnl73xRB7MCg4Q1M9Aog';
     const CHAT_ID = '1040123970';
 
-    // === 2. МОБИЛЬНОЕ МЕНЮ (БУРГЕР) ===
+    // === 2. ФУНКЦИЯ ВСПЛЫВАЮЩЕГО ОКНА (TOAST) ===
+    function showToast(message, type = 'error') {
+        let toast = document.getElementById('toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'toast';
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+        
+        toast.innerText = message;
+        toast.className = `toast show ${type}`;
+        
+        // Скрываем через 3.5 секунды
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3500);
+    }
+
+    // === 3. МОБИЛЬНОЕ МЕНЮ (БУРГЕР) ===
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
@@ -13,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 3. ВЫПАДАЮЩИЙ СПИСОК "УСЛУГИ" (DROPDOWN) ===
+    // === 4. ВЫПАДАЮЩИЙ СПИСОК "УСЛУГИ" ===
     const dropdown = document.querySelector('.dropdown');
     const dropdownToggle = document.querySelector('.dropdown > a') || document.querySelector('.dropdown-toggle');
 
@@ -26,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === 4. ОБРАБОТКА ФОРМЫ И ОТПРАВКА В ТЕЛЕГРАМ ===
+    // === 5. ОБРАБОТКА ФОРМЫ И ОТПРАВКА В ТГ ===
     const requestForm = document.getElementById('request-form');
 
     if (requestForm) {
@@ -36,33 +55,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = this.querySelector('button');
             const nameInput = document.getElementById('user_name');
             const phoneInput = document.getElementById('user_phone');
-            const tgInput = document.getElementById('user_tg'); // Новое поле
+            const tgInput = document.getElementById('user_tg'); // Необязательное поле
             
             const nameValue = nameInput.value.trim();
             const phoneValue = phoneInput.value.trim();
-            const tgValue = tgInput ? tgInput.value.trim() : ''; // Берем значение ТГ
+            const tgValue = tgInput ? tgInput.value.trim() : '';
 
             // --- ВАЛИДАЦИЯ ---
-            
             if (nameValue === '' || phoneValue === '') {
-                alert('Пожалуйста, заполните обязательные поля');
+                showToast('Заполните обязательные поля');
                 return;
             }
 
             const phoneRegex = /^[0-9+ ]+$/;
             if (!phoneRegex.test(phoneValue)) {
-                alert('Ошибка: в номере телефона разрешены только цифры и знак "+"');
+                showToast('В номере разрешены только цифры и "+"');
                 phoneInput.style.border = '2px solid #ef4444';
                 return;
             } else {
                 phoneInput.style.border = ''; 
             }
 
-            // --- ПРОЦЕСС ОТПРАВКИ ---
+            // --- ПОДГОТОВКА ОТПРАВКИ ---
             btn.innerText = 'Отправка...';
             btn.disabled = true;
 
-            // Формируем текст сообщения. Если ТГ пуст, пишем "Не указан"
             const displayTg = tgValue || 'Не указан';
             const message = `🚀 Новая заявка!\n👤 Имя: ${nameValue}\n📞 Телефон: ${phoneValue}\n✈️ Telegram: ${displayTg}`;
 
@@ -77,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    // Эффект успеха: скрываем ВСЕ инпуты в форме
+                    showToast('Заявка успешно отправлена!', 'success');
+
+                    // Плавное исчезновение инпутов
                     const inputs = this.querySelectorAll('input');
                     inputs.forEach(el => {
                         el.style.opacity = '0';
@@ -86,30 +105,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => el.style.display = 'none', 400);
                     });
 
-                    // Поиск карточки для смены заголовка
-                    const box = this.closest('.cta-box') || this.closest('.cta-section') || this.closest('.cta-card');
+                    // Замена заголовка
+                    const box = this.closest('.cta-box') || this.closest('.cta-section');
                     if (box) {
                         const title = box.querySelector('h2');
                         const desc = box.querySelector('p');
                         if (desc) {
-                            desc.style.transition = 'opacity 0.3s';
-                            desc.style.opacity = '0';
-                            setTimeout(() => { desc.style.display = 'none'; }, 300);
+                    
+                          desc.style.opacity = '0';
+                            setTimeout(() => desc.style.display = 'none', 300);
                         }
                         if (title) title.innerText = 'Заявка принята!';
                     }
 
-                    // Финальное состояние кнопки
+
                     btn.innerText = 'Отправлено успешно';
                     btn.style.background = '#10b981'; 
                     btn.style.width = '100%';
                     btn.style.marginTop = '20px';
                 } else {
-                    throw new Error('Сервер Telegram не ответил');
+                    throw new Error();
                 }
             } catch (error) {
-                console.error('Ошибка:', error);
-                alert('Ошибка при отправке. Проверьте интернет.');
+                showToast('Ошибка сети. Попробуйте позже');
                 btn.innerText = 'Попробовать снова';
                 btn.disabled = false;
             }
