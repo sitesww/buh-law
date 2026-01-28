@@ -783,9 +783,12 @@ form button:hover {
 .cta form {
   margin: 0 auto;
   background: #ffffff;
-  padding: 40px;
+  padding: 30px 20px; /* Уменьшили боковые отступы */
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+  width: 100%;        /* Форма будет занимать всю ширину контейнера */
+  max-width: 420px;   /* Но не станет шире 420px на десктопах */
+  box-sizing: border-box; /* Важно: паддинги не расширяют форму */
 
 }
 /* Секция обратной связи в твоих цветах */
@@ -823,7 +826,15 @@ form button:hover {
   align-items: center; /* Центрирует элементы формы */
   gap: 15px;
 }
-
+form input {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px; /* 16px предотвращает автоматический зум в iOS */
+  box-sizing: border-box; /* Гарантирует, что input не выйдет за границы формы */
+}
 .cta-form input {
   width: 100%;
   max-width: 400px; /* Ограничиваем ширину инпутов для красоты */
@@ -1148,7 +1159,21 @@ html {
     justify-content: center !important;
     align-items: center !important;
   }
+@media (max-width: 768px) {
+  /* ... твой существующий код ... */
 
+  .cta {
+    padding: 40px 15px !important; /* Больше пространства по бокам на мобиле */
+  }
+
+  .cta form {
+    padding: 25px 15px; /* Еще более компактные отступы внутри формы */
+  }
+  
+  .cta h2 {
+    font-size: 24px !important; /* Уменьшаем заголовок, чтобы он не переносился криво */
+  }
+}
   /* Карточка формы: делаем её адаптивной и центрируем контент */
   .cta-box {
     width: 90% !important; /* Чтобы был виден фон по бокам на узких экранах */
