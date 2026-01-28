@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (dropdownToggle) {
         dropdownToggle.addEventListener('click', function(e) {
-            // Работает только на мобильных (ширина меньше 768px)
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 dropdown.classList.toggle('active');
@@ -37,19 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = this.querySelector('button');
             const nameInput = document.getElementById('user_name');
             const phoneInput = document.getElementById('user_phone');
+            const tgInput = document.getElementById('user_tg'); // Новое поле
             
             const nameValue = nameInput.value.trim();
             const phoneValue = phoneInput.value.trim();
+            const tgValue = tgInput ? tgInput.value.trim() : ''; // Берем значение ТГ
 
-            // --- ВАЛИДАЦИЯ (ФИЛЬТРЫ) ---
+            // --- ВАЛИДАЦИЯ ---
             
-            // Проверка на заполненность
             if (nameValue === '' || phoneValue === '') {
-                alert('Пожалуйста, заполните все поля');
+                alert('Пожалуйста, заполните обязательные поля');
                 return;
             }
 
-            // Фильтр номера: только цифры, плюс и пробелы
             const phoneRegex = /^[0-9+ ]+$/;
             if (!phoneRegex.test(phoneValue)) {
                 alert('Ошибка: в номере телефона разрешены только цифры и знак "+"');
@@ -59,14 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 phoneInput.style.border = ''; 
             }
 
-            // --- ПРОЦЕСС ОТПРАВКИ (КОЛБЭК) ---
+            // --- ПРОЦЕСС ОТПРАВКИ ---
             btn.innerText = 'Отправка...';
             btn.disabled = true;
 
-            const message = `🚀 Новая заявка!\n👤 Имя: ${nameValue}\n📞 Телефон: ${phoneValue}`;
+            // Формируем текст сообщения. Если ТГ пуст, пишем "Не указан"
+            const displayTg = tgValue || 'Не указан';
+            const message = `🚀 Новая заявка!\n👤 Имя: ${nameValue}\n📞 Телефон: ${phoneValue}\n✈️ Telegram: ${displayTg}`;
 
             try {
-                // Прямой запрос к API Telegram
                 const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    // Эффект успеха: плавно скрываем инпуты
+                    // Эффект успеха: скрываем ВСЕ инпуты в форме
                     const inputs = this.querySelectorAll('input');
                     inputs.forEach(el => {
                         el.style.opacity = '0';
@@ -91,9 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (box) {
                         const title = box.querySelector('h2');
                         const desc = box.querySelector('p');
-                        if (desc) desc.style.transition = 'opacity 0.3s';
-                        if (desc) desc.style.opacity = '0';
-                        setTimeout(() => { if (desc) desc.style.display = 'none'; }, 300);
+                        if (desc) {
+                            desc.style.transition = 'opacity 0.3s';
+                            desc.style.opacity = '0';
+                            setTimeout(() => { desc.style.display = 'none'; }, 300);
+                        }
                         if (title) title.innerText = 'Заявка принята!';
                     }
 
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Ошибка:', error);
-                alert('Ошибка при отправке. Проверьте интернет или настройки бота.');
+                alert('Ошибка при отправке. Проверьте интернет.');
                 btn.innerText = 'Попробовать снова';
                 btn.disabled = false;
             }
