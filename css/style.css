@@ -754,6 +754,79 @@ form button:hover {
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
 
 }
+/* Секция обратной связи в твоих цветах */
+.cta-section {
+  padding: 100px 0;
+  background-color: var(--bg-subtle);
+  display: flex;
+  justify-content: center; /* Центрирует контейнер */
+}
+
+.cta-box {
+  width: 100%;
+  max-width: 500px; /* Узкая аккуратная форма */
+  margin: 0 auto;
+  background: var(--white);
+  padding: 50px 40px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  text-align: center; /* Центрирует текст внутри */
+}
+
+.cta-box h2 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+.cta-box p {
+  margin-bottom: 30px;
+  color: var(--text-light);
+}
+
+.cta-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирует элементы формы */
+  gap: 15px;
+}
+
+.cta-form input {
+  width: 100%;
+  max-width: 400px; /* Ограничиваем ширину инпутов для красоты */
+  padding: 16px 20px;
+  border: 1.5px solid #eef2f1;
+  border-radius: 14px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  transition: var(--transition);
+  background: #fcfdfd;
+}
+
+.cta-form input:focus {
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.cta-form .btn-primary {
+  width: 100%;
+  max-width: 400px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 10px;
+}
+
+.cta-form .btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(4, 120, 87, 0.2);
+}
 
 /* ================= FOOTER ================= */
 /* FOOTER STYLES */
@@ -1032,4 +1105,42 @@ html {
     padding-left: 20px;
     text-align: left;
   }
+  .cta-section {
+    padding: 50px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Карточка формы: делаем её адаптивной и центрируем контент */
+  .cta-box {
+    width: 90% !important; /* Чтобы был виден фон по бокам на узких экранах */
+    max-width: 400px !important; 
+    margin: 0 auto !important; /* Магическое центрирование блока */
+    padding: 30px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Центрирует всё внутри (заголовки, кнопки) */
+  }
+
+  .cta-form {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .cta-form input, 
+  .cta-form .btn-primary {
+    width: 100% !important; /* Растягиваем на всю ширину карточки */
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* Чтобы padding не раздувал ширину */
+  }
+
+  .cta-box h2, .cta-box p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  
+}
 } /* КОНЕЦ МЕДИА-ЗАПРОСА */

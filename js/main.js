@@ -56,3 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const requestForm = document.getElementById('request-form');
+
+  if (requestForm) {
+    requestForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = this.querySelector('button');
+      const inputs = this.querySelectorAll('input');
+
+      btn.innerText = 'Отправка...';
+      btn.disabled = true;
+
+      // Имитация успешной отправки
+      setTimeout(() => {
+        inputs.forEach(el => {
+          el.style.opacity = '0';
+          setTimeout(() => el.style.display = 'none', 300);
+        });
+
+        this.querySelector('p').style.display = 'none';
+        this.querySelector('h2').innerText = 'Спасибо!';
+        
+        btn.innerText = 'Заявка принята';
+        btn.style.background = '#10b981'; 
+      }, 1200);
+    });
+  }
+});
