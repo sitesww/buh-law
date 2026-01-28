@@ -257,9 +257,7 @@ a {
 .check-list {
   list-style: none; /* Убираем стандартные черные точки */
   padding: 0;
-  display: table;          /* Позволяет блоку сжаться под ширину текста */
-  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
-  text-align: left;
+  
 }
 
 .check-list li {
@@ -873,120 +871,158 @@ html {
   scroll-behavior: smooth;
 }
 /* ================= MOBILE ================= */
+/* ================= ПОЛНЫЙ ИСПРАВЛЕННЫЙ МОБИЛЬНЫЙ БЛОК ================= */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
 
-.nav {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 72px; 
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  padding: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  z-index: 1000;
-  gap: 15px;
-  /* Добавьте это: */
-  max-height: calc(100vh - 72px); 
-  overflow-y: auto; 
-}
+  /* 1. Навигация и Шапка */
+  .header-inner {
+    height: 72px; 
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
 
- 
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 72px; 
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    gap: 15px;
+    max-height: calc(100vh - 72px); 
+    overflow-y: auto; 
+  }
+
+  .nav.active { display: flex; }
+
   .nav a {
     padding: 15px 20px;
     border-bottom: 1px solid #f1f5f9;
     width: 100%;
   }
-  
-  .nav.active {
-    display: flex;
-  }
-  
-.hero {
-    height: 380px; /* Еще меньше для телефонов */
+
+  .phone {
+    display: block;
+    order: 2;
+    font-size: 13px !important;
+    margin: 0 10px !important;
   }
 
-  .hero-content h1 {
-    font-size: 32px; /* Меньше шрифт на телефоне */
+  .burger {
+    display: flex;
+    order: 3;
   }
-  
-  .hero-content p {
-     color: rgba(255, 255, 255, 0.9) !important;
-     font-size: 16px; /* Меньше подзаголовок */
-     padding: 0 10px;
+
+  .logo-img {
+    height: 40px;
+    filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
   }
-  .services {
-    padding: 50px 0;
+
+  /* 2. Контент и Секции */
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
-  .services-grid {
-    grid-template-columns: 1fr; /* Одна колонка на телефонах */
+
+  section, .services, .hero-overlay, .advantages-section {
+    text-align: center !important;
+    padding: 40px 0 !important;
   }
-    .service-layout {
-    grid-template-columns: 1fr;
+
+  h1, h2 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+    word-wrap: break-word;
+    margin-bottom: 20px;
   }
+
+  section p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 15px !important;
+    padding: 0 10px;
+  }
+
+  /* 3. Центрирование списков */
+  .custom-dots, .service-list, .check-list {
+    display: inline-block !important;
+    text-align: left !important;
+    margin: 0 auto 30px !important;
+    width: auto !important;
+  }
+
+  .custom-dots li {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  /* 4. Сетки и макеты услуг */
+  .services-grid, .service-layout {
+    grid-template-columns: 1fr !important;
+    gap: 25px;
+  }
+
   .service-sidebar {
     position: relative;
     top: 0;
     margin-bottom: 30px;
   }
- .phone {
-    display: block;       /* Делаем номер видимым */
-    order: 2;            /* Управляем порядком внутри flex-контейнера */
-    font-size: 14px;     /* Немного уменьшим шрифт для мобильных */
-    margin: 0 auto;      /* Центрируем, если есть свободное место */
+
+  /* 5. Исправление Dropdown (Услуги) */
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 10px 0 !important;
+    display: none; 
+    opacity: 1 !important;
   }
- 
-  .burger {
-    display: flex;       /* Кнопка меню остается справа */
-    order: 3;            /* Гарантируем, что она будет последней */
+
+  .dropdown.active .dropdown-menu { display: block; }
+
+  .dropdown-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 
- .header-inner {
-    height: 72px; /* Фиксируем высоту как на десктопе */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  /* 6. Hero экран */
+  .hero { height: 380px; }
+  .hero-content h1 { font-size: 28px !important; }
+  .hero-content p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 16px;
   }
-.custom-dots li {
-        font-size: 15px; /* Чуть меньше шрифт для узких экранов */
-        margin-bottom: 20px; /* Больше расстояния между пунктами для удобства чтения */
-    }
 
-
-
-  .section {
-    padding: 70px 0;
-  }
-  .logo-img {
-    filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
-    transition: var(--transition);
-    height: 40px;
-  }
-  .advantages-section {
-    padding: 50px 0;
-}
-
-.advantages-section h2 {
-    font-size: 22px;
-    line-height: 1.4;
-    margin-bottom: 30px;
-    padding: 0 10px; /* Чтобы заголовок тоже не лип к краям */
-}
-
+  /* 7. Футер и Инфо-блоки */
   .footer-grid {
-        grid-template-columns: 1fr; /* Все колонки футера в ряд */
-        gap: 30px;
-        text-align: left;
-    }
-
-    .footer-col {
-        padding: 0 10px;
-        
-    }
-    .info-item {
-    padding-left: 20px; /* Чтобы не липло к левому краю, как вы просили */
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+    text-align: left;
   }
-}
+
+  .footer-col { padding: 0 10px; }
+
+  .info-item {
+    padding-left: 20px;
+    text-align: left;
+  }
+} /* КОНЕЦ МЕДИА-ЗАПРОСА */
