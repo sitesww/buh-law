@@ -1,32 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap');
 
 :root {
-  --primary: #6366f1;       /* Мягкий индиго */
-  --dark: #0f172a;          /* Глубокий сланец */
-  --text: #475569;          /* Спокойный серый */
-  --bg: #f8fafc;            /* Почти белый лед */
+  /* Основная изумрудная палитра */
+  --primary: #047857;        /* Насыщенный изумруд */
+  --primary-hover: #065f46;  /* Темный изумруд */
+  --accent: #10b981;         /* Светлый изумрудный для акцентов */
+  
+  /* Цвета текста - уходим от серого к глубокому зеленому/черному */
+  --dark: #062019;           /* Очень темный изумрудный для заголовков */
+  --text: #2d413b;           /* Глубокий оттенок хвои для основного текста */
+  --text-light: #526b64;     /* Мягкий зеленый для второстепенного текста */
+
+  --bg: #ffffff;             /* Чистый белый фон */
+  --bg-subtle: #f0fdf4;      /* Едва заметный мятный фон для блоков */
   --white: #ffffff;
-  /* Тонкая многослойная тень */
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
-  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  --shadow: 0 8px 25px rgba(4, 120, 87, 0.12);
+  --transition: all 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+  color: var(--dark) !important;
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  
   background-color: var(--bg);
-  color: var(--dark);
+  color: var(--text);
   letter-spacing: -0.01em;
 }
-:root {
-  --primary: #2563eb;       /* Оставляем яркий синий для акцентов */
-  --primary-hover: #1e40af;
-  --dark: #020617;          /* Максимально глубокий темный */
-  --text: #334155;          /* Более контрастный серый текст */
-  --bg-light: #f8fafc;      /* Очень светлый, "ледяной" фон */
-  --white: #ffffff;
-  --shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(37, 99, 235, 0.08);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 /* Дополнительно: можно сделать акцентные кнопки золотыми, если нужно */
 /* ================= RESET ================= */
 * {
@@ -95,7 +98,7 @@ a {
 }
 
 .nav a:hover {
-  color: #1d4ed8
+ color: var(--primary) !important;
 
 ;
 }
@@ -121,7 +124,7 @@ a {
 /* Карточки услуг */
 .service-card {
   background: var(--white);
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 1px solid #e1e8e5; /* Тонкая серо-зеленая рамка */
   border-radius: 24px;
   padding: 32px;
   transition: var(--transition);
@@ -130,15 +133,16 @@ a {
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-  border-color: var(--primary);
+  border-color: var(--accent);
+  box-shadow: 0 15px 35px rgba(4, 120, 87, 0.1);
+
 
 }
 
 .service-icon {
   width: 60px;
   height: 60px;
-  background: #f0f7ff;
+  background: var(--bg-subtle);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -150,7 +154,7 @@ a {
 .service-card h3 {
   font-size: 20px;
   margin-bottom: 12px;
-  color: #0f172a;
+  color: #0f2a16;
 }
 
 .service-card p {
@@ -163,13 +167,13 @@ a {
 
 .service-link {
   font-weight: 600;
-  color: #3b82f6;
+  color: var(--primary) !important;
   font-size: 14px;
 }
 .service-icon-container {
   width: 64px;
   height: 64px;
-  background: #eff6ff;
+  background: var(--bg-subtle);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -240,7 +244,8 @@ a {
   height: 8px;
   background-color: var(--primary); /* Используем наш индиго/синий цвет */
   border-radius: 50%; /* Делаем круглым */
-  box-shadow: 0 0 10px rgba(79, 70, 229, 0.3); /* Легкое свечение */
+  box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
+ /* Легкое свечение */
 }
 
 /* Стили для контентной части */
@@ -272,7 +277,7 @@ a {
   content: "→";          /* Можно заменить на "" и сделать круг, как в прошлый раз */
   position: absolute;
   left: 0;
-  color: #4f46e5;        /* Ваш фирменный индиго/синий */
+  color: var(--accent);       /* Ваш фирменный индиго/синий */
   font-weight: bold;
   font-size: 20px;
   transition: transform 0.3s ease;
@@ -284,7 +289,7 @@ a {
 }
 
 .check-list li:hover {
-  color: #4f46e5;
+  color: var(--primary);
   transition: 0.3s;
 }
 /* Эффект при наведении на пункт (необязательно, но красиво) */
@@ -326,17 +331,17 @@ a {
 .sidebar-cta {
   margin-top: 30px;
   padding: 25px;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(135deg, #065f46 0%, #022c22 100%);
   border-radius: 20px;
   color: #fff;
 }
 
 .sidebar-cta p { font-size: 14px; opacity: 0.8; margin-bottom: 10px; }
-.sidebar-phone { font-weight: 700; font-size: 18px; color: #3b82f6 !important; }
+.sidebar-phone { font-weight: 700; font-size: 18px; color: var(--accent) !important; }
 
 .phone {
   font-weight: 600;
-  color: #1d4ed8;
+  color: var(--primary);
   white-space: nowrap;
 }
 
@@ -364,12 +369,13 @@ a {
 }
 .burger:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.3);
+  box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
+
 }
 .burger span {
   width: 22px;
   height: 2px;
-  background: #1d4ed8;
+  background: var(--primary);
   border-radius: 2px;
 }
 
@@ -461,7 +467,8 @@ a {
 .hero-content h1 {
   font-size: clamp(28px, 4vw, 52px); /* Немного уменьшили максимальный размер */
   font-weight: 800;
-  color: #fff;
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   line-height: 1.2;
   margin-bottom: 20px;
   max-width: 800px; /* Ограничим ширину текста */
@@ -492,21 +499,24 @@ a {
 .btn-primary {
   display: inline-block;
   background: var(--primary);
-  color: #fff;
+  color: #fff !important;
   padding: 18px 45px;
   border-radius: 50px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 14px;
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
+
   transition: var(--transition);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
+
+
 }
 
 /* ================= SECTIONS ================= */
@@ -523,7 +533,7 @@ section h2 {
 
 section p {
   max-width: 800px;
-  color: #475569;
+  color: var(--text);
 }
 /* Общий контейнер для иконки и текста */
 .info-item {
@@ -538,6 +548,7 @@ section p {
 
 /* Стили для самой иконки */
 .info-item .icon img {
+  filter: invert(58%) sepia(58%) saturate(545%) hue-rotate(114deg) brightness(96%) contrast(91%);
     width: 24px;         /* Подбери размер под телефон/будильник */
     height: 24px;
     object-fit: contain;
@@ -552,7 +563,7 @@ section p {
 
 .info-link {
     text-decoration: none;
-    color: #2563eb;      /* Твой синий цвет ссылки */
+    color: var(--primary) !important;      /* Твой синий цвет ссылки */
     font-weight: 600;
 }
 
@@ -602,8 +613,8 @@ section p {
 
 .services-grid a:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
-  border-color: #bfdbfe;
+  box-shadow: 0 20px 40px rgba(4, 120, 87, 0.25);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 /* ================= PAGE ================= */
@@ -632,6 +643,8 @@ section p {
   color: #475569;
 }
 .logo-img {
+     filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
+    transition: var(--transition);
   height: 50px; /* Было 85px */
   width: auto;
 
@@ -667,14 +680,15 @@ form input {
 }
 form input:focus {
   outline: none;
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
 }
 
 form button {
   width: 100%;
   padding: 16px;
-  background: #1d4ed8
+  background: var(--primary);
+
 ;
   color: #ffffff;
   border: none;
@@ -684,7 +698,8 @@ form button {
 }
 
 form button:hover {
-  background: #1d4ed8;
+  background: var(--primary);
+
 }
 
 /* ================= SOCIALS ================= */
@@ -729,8 +744,8 @@ form button:hover {
 /* ================= FOOTER ================= */
 /* FOOTER STYLES */
 .footer {
-  background: #0f172a;
-  color: #f1f5f9;
+  background: #022c22;
+  color: #ffffff;
   padding: 80px 0 20px;
 }
 
@@ -742,11 +757,12 @@ form button:hover {
 }
 
 .footer-logo { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1); }
-.footer-col h4 { color: #fff; margin-bottom: 25px; font-size: 18px; }
+.footer-col h4 { color: var(--accent) !important; /* Изумрудный акцент для заголовков в футере */
+  margin-bottom: 20px; font-size: 18px; }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 12px; }
-.footer-links a { opacity: 0.7; transition: 0.3s; }
-.footer-links a:hover { opacity: 1; color: #3b82f6; }
+.footer-links a { opacity: 0.7; transition: 0.3s; color: rgba(255, 255, 255, 0.8) !important; }
+.footer-links a:hover { opacity: 1; color: var(--accent) !important; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -791,7 +807,8 @@ form button:hover {
   position: relative;
   padding-left: 45px;    /* Отступ текста от точки */
   margin-bottom: 18px;   /* Отступ между строками */
-  list-style-type: none; /* Дополнительная страховка */
+  list-style-type: none;
+  color: var(--text); /* Дополнительная страховка */
 }
 
 /* Наша изящная синяя точка остается здесь */
@@ -804,7 +821,7 @@ form button:hover {
   height: 8px;
   background-color: var(--primary);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
 }
 
 /* Эффект при наведении */
@@ -831,7 +848,8 @@ form button:hover {
     width: 20px;           /* Делаем иконку маленькой, под размер текста */
     height: 20px;
     display: block;
-    filter: brightness(0) invert(1); /* Сделает черную иконку белой под стиль футера */
+    filter: brightness(0) invert(1) !important;
+  opacity: 0.8; /* Сделает черную иконку белой под стиль футера */
 }
 
 .footer-socials a:hover {
@@ -878,6 +896,7 @@ html {
   }
   
   .hero-content p {
+     color: rgba(255, 255, 255, 0.9) !important;
      font-size: 16px; /* Меньше подзаголовок */
      padding: 0 10px;
   }
@@ -925,6 +944,8 @@ html {
     padding: 70px 0;
   }
   .logo-img {
+    filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
+    transition: var(--transition);
     height: 40px;
   }
   .advantages-section {
