@@ -410,6 +410,13 @@ a {
   transition: var(--transition);
 }
 
+/* Добавим небольшую иконку стрелочки, чтобы было понятно, что надо нажать */
+  .dropdown > a::after {
+    content: ' ';
+    font-size: 10px;
+    vertical-align: middle;
+  }
+
 .dropdown:hover .dropdown-menu {
   display: block;
   opacity: 1;
@@ -993,11 +1000,11 @@ html {
     box-shadow: none !important;
     border: none !important;
     padding: 10px 0 !important;
-    display: none; 
+    display: none !important;
     opacity: 1 !important;
   }
 
-  .dropdown.active .dropdown-menu { display: block; }
+  .dropdown.active .dropdown-menu { display: block !important;}
 
   .dropdown-grid {
     grid-template-columns: 1fr !important;

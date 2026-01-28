@@ -1,56 +1,58 @@
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-
-burger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
 document.addEventListener('DOMContentLoaded', () => {
-  const ctaForm = document.querySelector('.cta form');
+    // 1. Управление мобильным меню (Бургер)
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav');
 
-  if (ctaForm) {
-    ctaForm.addEventListener('submit', function(e) {
-      e.preventDefault(); // Чтобы страница не перезагружалась
+    if (burger && nav) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    }
 
-      const btn = this.querySelector('button');
-      const inputs = this.querySelectorAll('input');
+    // 2. Управление выпадающим списком "Сервисы" (Dropdown) на мобилках
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownToggle = document.querySelector('.dropdown > a');
 
-      // 1. Скрываем все поля ввода
-      inputs.forEach(input => {
-        input.style.display = 'none';
-      });
+    if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(e) {
+            // Проверяем, что ширина экрана мобильная (до 768px)
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Останавливаем переход по ссылке
+                dropdown.classList.toggle('active'); // Открываем/закрываем вкладку
+            }
+        });
+    }
 
-      // 2. Меняем кнопку
-      btn.innerText = 'Отправлено!';
-      btn.classList.add('sent-success');
-      btn.disabled = true; // Чтобы не нажимали дважды
+    // 3. Обработка формы (CTA)
+    const ctaForm = document.querySelector('.cta form');
 
-      // Здесь в будущем можно добавить отправку данных на почту или в Telegram
-      console.log('Форма успешно отправлена!');
-    });
-  }
+    if (ctaForm) {
+        ctaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const button = this.querySelector('button');
+            const inputs = this.querySelectorAll('input');
+
+            // Эффект исчезновения полей
+            inputs.forEach(input => {
+                input.style.transition = 'all 0.3s ease';
+                input.style.opacity = '0';
+                input.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    input.style.display = 'none';
+                }, 300);
+            });
+
+            // Изменение кнопки после исчезновения полей
+            setTimeout(() => {
+                button.innerText = 'Заявка принята';
+                button.style.background = '#10b981';
+                button.style.width = '100%';
+                button.disabled = true;
+                button.classList.add('sent-success');
+            }, 350);
+
+            console.log('Форма успешно отправлена!');
+        });
+    }
 });
-const form = document.querySelector('.cta form');
-
-if (form) {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Плавное исчезновение инпутов
-    const inputs = this.querySelectorAll('input');
-    const button = this.querySelector('button');
-    
-    inputs.forEach(input => {
-      input.style.opacity = '0';
-      input.style.transform = 'translateY(-10px)';
-      setTimeout(() => input.style.display = 'none', 300);
-    });
-
-    // Изменение кнопки
-    setTimeout(() => {
-      button.innerText = 'Заявка принята';
-      button.style.background = '#10b981'; // Изящный зеленый
-      button.style.width = '100%';
-      button.disabled = true;
-    }, 350);
-  });
-}
