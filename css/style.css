@@ -24,18 +24,14 @@ h1, h2, h3, h4 {
 }
 
 body {
-  
+  font-family: 'Manrope', Inter, system-ui, sans-serif; /* Добавили ваш шрифт Manrope первым */
   background-color: var(--bg);
   color: var(--text);
-  letter-spacing: -0.01em;
-}
+  line-height: 1.6;
 
-/* Дополнительно: можно сделать акцентные кнопки золотыми, если нужно */
-/* ================= RESET ================= */
-* {
+  letter-spacing: -0.01em;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+padding: 0;
 }
 
 /* ================= BASE ================= */
@@ -57,8 +53,8 @@ a {
   margin: 0 auto;
   padding: 0 20px;
     width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 20px !important;;
+    padding-left: 20px !important;;
     margin-right: auto;
     margin-left: auto;
 }
@@ -99,8 +95,7 @@ a {
 
 .nav a:hover {
  color: var(--primary) !important;
-
-;
+ 
 }
 /* ================= SERVICES SECTION ================= */
 .services {
@@ -221,6 +216,9 @@ a {
   list-style: none; /* Убираем стандартные точки */
   padding-left: 5px;
   margin-top: 20px;
+  display: table;          /* Позволяет блоку сжаться под ширину текста */
+  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
+  text-align: left;
 }
 
 .service-list li {
@@ -259,6 +257,9 @@ a {
 .check-list {
   list-style: none; /* Убираем стандартные черные точки */
   padding: 0;
+  display: table;          /* Позволяет блоку сжаться под ширину текста */
+  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
+  text-align: left;
 }
 
 .check-list li {
@@ -535,12 +536,15 @@ section {
 }
 
 section h2 {
+  text-align: center;
   font-size: 36px;
   margin-bottom: 30px;
   color: #0f172a;
 }
 
 section p {
+  text-align: center;
+  margin: 0 auto 25px;
   max-width: 800px;
   color: var(--text);
 }
@@ -596,12 +600,7 @@ section p {
   text-decoration: underline;
 }
 
-/* На мобильных устройствах */
-@media (max-width: 768px) {
-  .info-item {
-    padding-left: 20px; /* Чтобы не липло к левому краю, как вы просили */
-  }
-}
+
 /* ================= SERVICES ================= */
 .services-grid {
   display: grid;
@@ -630,6 +629,7 @@ section p {
 .page {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .page h1 {
@@ -812,7 +812,9 @@ form button:hover {
 .custom-dots {
   list-style: none !important; /* Убирает черную точку */
   padding: 0;
-  margin: 20px 0;
+  display: table;          /* Позволяет блоку сжаться под ширину текста */
+  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
+  text-align: left;
 }
 
 .custom-dots li {
@@ -873,20 +875,23 @@ html {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-    .nav {
-      display: none; /* Прячем ссылки, чтобы они не выпадали как на фото */
-      flex-direction: column;
-      position: absolute;
-      top: 72px; 
-      left: 0;
-      right: 0;
-      background: #ffffff;
-      padding: 20px;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-      z-index: 1000;
-      gap: 15px;
-    }
+.nav {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 72px; 
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  gap: 15px;
+  /* Добавьте это: */
+  max-height: calc(100vh - 72px); 
+  overflow-y: auto; 
+}
 
  
   .nav a {
@@ -979,5 +984,9 @@ html {
 
     .footer-col {
         padding: 0 10px;
+        
     }
+    .info-item {
+    padding-left: 20px; /* Чтобы не липло к левому краю, как вы просили */
+  }
 }
