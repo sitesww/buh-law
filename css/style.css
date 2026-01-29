@@ -119,85 +119,116 @@ a {
   color: #1e293b;
 }
 
+/* Контейнер для карточек — теперь 3 в ряд для баланса */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(3, 1fr) !important; /* Ровно три колонки */
+  gap: 25px; /* Оптимальный отступ между карточками */
+  width: 100%;
+  max-width: 1400px; /* Увеличили общую ширину контейнера, чтобы 3 карточки влезли */
+  margin: 0 auto;
 }
 
-/* Карточки услуг */
+/* На планшетах делаем 2 в ряд */
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* На мобилках 1 в ряд */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 .service-card {
-  background: var(--white);
-  border: 1px solid #e1e8e5; /* Тонкая серо-зеленая рамка */
-  border-radius: 24px;
-  padding: 32px;
-  transition: var(--transition);
-
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: 0 15px 35px rgba(4, 120, 87, 0.1);
-
-
-}
-
-.service-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--bg-subtle);
-  border-radius: 14px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 28px;
+  padding: 45px 35px; /* Чуть меньше боковые отступы для 3-х колонок */
+  min-height: 420px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
 }
 
+/* ЗАГОЛОВОК — Масштабный, но компактный для 3-х колонок */
 .service-card h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
-  color: #0f2a16;
-}
-
-.service-card p {
-  font-size: 14px;
-  color: #64748b;
-  line-height: 1.6;
+  font-size: 28px !important; /* Оптимально для 3-х в ряд */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 15px;
   margin-bottom: 20px;
-  flex-grow: 1;
+  color: var(--dark);
+  transition: color 0.4s ease;
 }
 
-.service-link {
-  font-weight: 600;
-  color: var(--primary) !important;
-  font-size: 14px;
+/* ТЕКСТ */
+.service-card p {
+  font-size: 17px !important; 
+  line-height: 1.6;
+  color: var(--text-light);
+  transition: color 0.4s ease;
 }
+
+/* ИКОНКА */
 .service-icon-container {
-  width: 64px;
-  height: 64px;
-  background: var(--bg-subtle);
-  border-radius: 16px;
+  background: #f0fdf4 !important;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
-  transition: transform 0.3s ease;
-}
-.service-card:hover .service-icon-container {
-  transform: scale(1.1) rotate(5deg); /* Иконка чуть крутится */
+  border-radius: 20px;
+  margin-bottom: 15px;
+  transition: all 0.5s ease;
 }
 
 .service-icon-img {
-  width: 32px; /* Размер самой иконки внутри контейнера */
-  height: 32px;
-  object-fit: contain;
+  width: 45px;
+  height: 45px;
+  filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
 }
 
-/* Если иконки пока нет, покажем пустой блок с цветом */
-.service-icon-img[src=""], .service-icon-img:not([src]) {
-  opacity: 0;
+/* ХОВЕР ЭФФЕКТ (Зеленая заливка) */
+.service-card:hover {
+  background-color: var(--primary) !important;
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(22, 101, 52, 0.2);
+}
+
+.service-card:hover h3, 
+.service-card:hover p {
+  color: #ffffff !important;
+}
+
+.service-card:hover .service-icon-container {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.service-card:hover .service-icon-img {
+  filter: brightness(0) invert(1) !important;
+}
+/* Адаптив для телефонов (уменьшаем шрифты, чтобы не "кричали") */
+@media (max-width: 768px) {
+  .service-card {
+    padding: 30px 20px;
+    min-height: 300px;
+  }
+  .service-card h3 {
+    font-size: 24px !important;
+  }
+  .service-card p {
+    font-size: 16px !important;
+  }
+  .service-icon-img {
+    width: 50px;
+    height: 50px;
+  }
 }
 /* Контейнер для двух колонок */
 .service-layout {
@@ -955,12 +986,12 @@ background: #0a2f18; /* Глубокий темно-зеленый, темнее
   text-align: left;
 }
 
+/* Увеличение списка ИП/ООО */
 .custom-dots li {
-  position: relative;
-  padding-left: 45px;    /* Отступ текста от точки */
-  margin-bottom: 18px;   /* Отступ между строками */
-  list-style-type: none;
-  color: var(--text); /* Дополнительная страховка */
+  font-size: 22px !important;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: var(--dark);
 }
 
 /* Наша изящная синяя точка остается здесь */
@@ -1017,6 +1048,10 @@ html {
     overflow-x: hidden;
     
     width: 100%;
+  }
+
+  .custom-dots li {
+    font-size: 17px !important; 
   }
 
   /* 1. Навигация и Шапка */
@@ -1258,5 +1293,43 @@ html {
 
   .service-card p, .page li {
     font-size: 16px; /* Текст в карточках и списках */
+    /* === УВЕЛИЧЕНИЕ СПИСКА (Кому подходят услуги) === */
+
+/* Увеличиваем шрифт только для этого списка */
+.custom-dots li {
+  font-size: 22px !important; /* Было меньше, теперь крупно */
+  font-weight: 500;           /* Чуть жирнее для читаемости */
+  margin-bottom: 20px;        /* Больше отступы между пунктами */
+  line-height: 1.6;
+  color: var(--dark);         /* Темный цвет для контраста */
+}
+
+/* Увеличиваем саму точку списка */
+.custom-dots li::before {
+  top: 13px;       /* Центрируем относительно нового размера текста */
+  width: 10px;     /* Чуть больше точка */
+  height: 10px;
+}
+
+/* Адаптив для телефонов (чтобы не было гигантским на мобильном) */
+
+/* Делаем карточки широкими - по 2 в ряд на больших экранах */
+@media (min-width: 1024px) {
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr !important; /* Строго 2 колонки */
+    gap: 30px; /* Расстояние между ними */
+    width: 100%;
+  }
+}
+
+/* На планшетах и телефонах оставляем по одной */
+@media (max-width: 1023px) {
+  .services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
   }
 }
