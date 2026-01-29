@@ -82,8 +82,9 @@ a {
 
 .logo {
   display: flex;
-  align-items: center;
-  flex-shrink: 0;
+  align-items: center; /* Центрируем по вертикали */
+  text-decoration: none;
+  height: 100%;
 }
 
 .nav {
@@ -697,15 +698,15 @@ section p {
 .page li {
   margin-bottom: 8px;
   color: #475569;
+  
 }
 .logo-img {
-     filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
-    transition: var(--transition);
-  height: 50px; /* Было 85px */
-  width: auto;
-  max-height: 50px;
-
+  height: 50px;
+  
 }
+
+
+
 /* Состояние кнопки после успешной отправки */
 .sent-success {
   background: #10b981 !important; /* Приятный зеленый цвет */
@@ -923,7 +924,7 @@ form input {
 /* FOOTER STYLES */
 .footer {
 background: #0a2f18; /* Глубокий темно-зеленый, темнее основного бренда */
-  color: #ffffff;
+  color: #e2e8f0;
   padding: 80px 0 20px;
 }
 
@@ -933,18 +934,36 @@ background: #0a2f18; /* Глубокий темно-зеленый, темнее
   gap: 50px;
   margin-bottom: 50px;
 }
-
-.footer-logo { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1); }
-.footer-col h4 { color: #ffffff !important; /* Чисто белый для заголовков в темном футере */
+.footer-col p {
+  color: #cbd5e1 !important; /* Цвет описания и адреса */
+  line-height: 1.6;
+  font-size: 15px;
+}
+/* Логотип в футере — оставляем белым для контраста */
+.footer-logo {
+  height: 50px;
+  margin-bottom: 25px;
+  filter: brightness(0) invert(1); /* Чисто белый */
+  display: block;
+}
+.footer-col h4 {
+  color: #ffffff !important;
   font-weight: 700;
-  margin-bottom: 20px;
-  border-left: 3px solid var(--accent); /* Добавим небольшую изумрудную полоску слева для стиля */
-  padding-left: 10px; }
+  margin-bottom: 25px;
+  border-left: 3px solid var(--primary-hover); /* Изумрудная полоска */
+  padding-left: 12px;
+}
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 12px; }
-.footer-links a { opacity: 0.7; transition: 0.3s; color: rgba(255, 255, 255, 0.8) !important; }
-.footer-links a:hover { opacity: 1; color: var(--accent) !important; }
-
+.footer-links a {
+  opacity: 1; /* Убираем прозрачность для четкости */
+  color: #ffffff !important;
+  transition: 0.3s;
+}
+.footer-links a:hover {
+  color: var(--primary-hover) !important;
+  padding-left: 5px; /* Небольшой эффект при наведении */
+}
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 20px;
@@ -1101,10 +1120,7 @@ html {
     order: 3;
   }
 
-  .logo-img {
-    height: 40px;
-    filter: invert(31%) sepia(94%) saturate(415%) hue-rotate(115deg) brightness(92%) contrast(97%) !important;
-  }
+
 
   /* 2. Контент и Секции */
   .container {
