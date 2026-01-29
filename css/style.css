@@ -1,46 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap');
 
 :root {
-  /* Основная изумрудная палитра */
-  --primary: #047857;        /* Насыщенный изумруд */
-  --primary-hover: #065f46;  /* Темный изумруд */
-  --accent: #10b981;         /* Светлый изумрудный для акцентов */
-  
-  /* Цвета текста - уходим от серого к глубокому зеленому/черному */
-  --dark: #062019;           /* Очень темный изумрудный для заголовков */
-  --text: #2d413b;           /* Глубокий оттенок хвои для основного текста */
-  --text-light: #526b64;     /* Мягкий зеленый для второстепенного текста */
+  /* Основные бренд-цвета */
+  --primary: #166534;        /* глубокий, дорогой зелёный */
+  --primary-hover: #22a06b;  /* мягкий hover */
+  --accent: #22a06b;         /* аккуратный акцент */
 
-  --bg: #ffffff;             /* Чистый белый фон */
-  --bg-subtle: #f0fdf4;      /* Едва заметный мятный фон для блоков */
+  /* Текст */
+  --dark: #0f3d2e;           /* заголовки */
+  --text: #0f172a;           /* основной текст */
+  --text-light: #475569;     /* вторичный текст */
+
+  /* Фоны */
+  --bg: #ffffff;
+  --bg-subtle: #e6f4ef;      /* нежный зелёный фон блоков */
   --white: #ffffff;
 
-  --shadow: 0 8px 25px rgba(4, 120, 87, 0.12);
+  /* UI */
+  --shadow: 0 8px 25px rgba(22, 101, 52, 0.18);
   --transition: all 0.3s ease;
 }
 
+
 h1, h2, h3, h4 {
-  color: var(--dark) !important;
+  color: var(--dark);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
+
+
 body {
-  font-family: 'Manrope', Inter, system-ui, sans-serif; /* Добавили ваш шрифт Manrope первым */
+  
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
 
   letter-spacing: -0.01em;
   margin: 0;
-padding: 0;
+  padding: 0;
+}
+p, li {
+  color: var(--text-light);
 }
 
-/* ================= BASE ================= */
-body {
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f8fbff;
-  color: #0f172a;
-  line-height: 1.6;
-}
+
+
 
 a {
   text-decoration: none;
@@ -49,14 +55,10 @@ a {
 
 /* ================= CONTAINER ================= */
 .container {
-  max-width: 1200px;
+    max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-    width: 100%;
-    padding-right: 20px !important;;
-    padding-left: 20px !important;;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
 }
 
 /* ================= HEADER ================= */
@@ -64,9 +66,10 @@ a {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--white);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e2e8f0;
+  border-color: #e5e7eb; /* допустимо */
 }
 
 .header-inner {
@@ -74,6 +77,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 0;
 }
 
 .logo {
@@ -84,23 +88,28 @@ a {
 
 .nav {
   display: flex;
+  align-items: center;
   gap: 30px;
 }
 
 .nav a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 100%; /* Чтобы область клика была одинаковой */
   font-size: 15px;
   font-weight: 500;
-  color: #334155;
+  color: var(--text);
 }
 
 .nav a:hover {
- color: var(--primary) !important;
+ color: var(--primary);
  
 }
 /* ================= SERVICES SECTION ================= */
 .services {
   padding: 80px 0;
-  background: #f8fbff;
+  background: var(--bg);
 }
 
 .services h2 {
@@ -397,7 +406,7 @@ a {
   display: none;
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 0;
   transform: translateX(-50%) translateY(10px); /* Смещение вниз */
   background: #ffffff;
   min-width: 550px;
@@ -536,7 +545,7 @@ a {
 
 /* ================= SECTIONS ================= */
 section {
-  padding: 90px 0;
+  padding: 80px 0;
   background: #ffffff;
 }
 
@@ -544,7 +553,7 @@ section h2 {
   text-align: center;
   font-size: 36px;
   margin-bottom: 30px;
-  color: #0f172a;
+  color: var(--text);
 }
 
 section p {
@@ -615,12 +624,12 @@ section p {
 }
 
 .services-grid a {
-  background: #f8fbff;
+  background: var(--bg);
   border: 1px solid #e5e7eb;
   border-radius: 18px;
   padding: 35px;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--text);
   transition: all 0.3s ease;
 }
 
@@ -640,7 +649,7 @@ section p {
 .page h1 {
   font-size: 42px;
   margin-bottom: 25px;
-  color: #0f172a;
+  color: var(--text);
 }
 
 .page h2 {
@@ -661,6 +670,7 @@ section p {
     transition: var(--transition);
   height: 50px; /* Было 85px */
   width: auto;
+  max-height: 50px;
 
 }
 /* Состояние кнопки после успешной отправки */
@@ -1003,7 +1013,7 @@ html {
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
-    position: relative;
+    
     width: 100%;
   }
 
@@ -1026,7 +1036,7 @@ html {
     right: 0;
     background: #ffffff;
     padding: 20px;
-    border-bottom: 1px solid #e5e7eb;
+    border-color: #e5e7eb; /* допустимо */
     box-shadow: 0 10px 15px rgba(0,0,0,0.1);
     z-index: 1000;
     gap: 15px;
@@ -1159,7 +1169,7 @@ html {
     justify-content: center !important;
     align-items: center !important;
   }
-@media (max-width: 768px) {
+
   /* ... твой существующий код ... */
 
   .cta {
@@ -1173,7 +1183,6 @@ html {
   .cta h2 {
     font-size: 24px !important; /* Уменьшаем заголовок, чтобы он не переносился криво */
   }
-}
   /* Карточка формы: делаем её адаптивной и центрируем контент */
   .cta-box {
     width: 90% !important; /* Чтобы был виден фон по бокам на узких экранах */
@@ -1205,4 +1214,27 @@ html {
     margin-right: auto !important;
   
 }
+/* ===== FIX: Навигация и Dropdown слева на мобилке ===== */
+
+.nav {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+.nav a,
+.dropdown-toggle {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+.dropdown-menu {
+  padding-left: 0 !important;
+}
+
+.dropdown-menu a {
+  text-align: left !important;
+  padding-left: 0 !important;
+}
+
+
 } /* КОНЕЦ МЕДИА-ЗАПРОСА */
