@@ -339,7 +339,7 @@ a {
 .sidebar-cta {
   margin-top: 30px;
   padding: 25px;
-  background: var(--primary-hover) !important; /* Глубокий изумрудный фон */
+  background: #114d27 !important; /* Насыщенный зеленый, как кнопка заявки */
   border-radius: 15px;
   color: #fff;
   text-align: center;
@@ -351,10 +351,12 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
   opacity: 1 !important; /* Убеждаемся, что текст не скрыт */}
-.sidebar-phone {color: var(--accent) !important; /* Ярко-изумрудный номер телефона */
-  font-size: 20px;
+.sidebar-phone {
+  color: #4ade80 !important; /* Светло-зеленый акцент для читаемости на темном */
+  font-size: 24px; /* Увеличили размер номера */
   font-weight: 800;
-  display: block; }
+  display: block;
+  margin-top: 5px; }
 
 .phone {
   font-weight: 600;
@@ -889,7 +891,7 @@ form input {
 /* ================= FOOTER ================= */
 /* FOOTER STYLES */
 .footer {
-  background: #022c22;
+background: #0a2f18; /* Глубокий темно-зеленый, темнее основного бренда */
   color: #ffffff;
   padding: 80px 0 20px;
 }
@@ -1238,3 +1240,23 @@ html {
 
 
 } /* КОНЕЦ МЕДИА-ЗАПРОСА */
+
+/* Глобальное увеличение шрифта только для десктопов (от 1024px и выше) */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px; /* Было 16px */
+    line-height: 1.8;
+  }
+
+  h1 { font-size: 56px !important; }
+  h2 { font-size: 40px !important; }
+  h3 { font-size: 24px !important; }
+  h4 { font-size: 16px !important; }
+  .nav a {
+    font-size: 17px; /* Ссылки в меню стали крупнее */
+  }
+
+  .service-card p, .page li {
+    font-size: 16px; /* Текст в карточках и списках */
+  }
+}
