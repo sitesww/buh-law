@@ -256,7 +256,7 @@ a {
 .service-list {
   list-style: none; /* Убираем стандартные точки */
   padding-left: 5px;
-  margin-top: 20px;
+  margin-top: 25px;
   display: table;          /* Позволяет блоку сжаться под ширину текста */
   margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
   text-align: left;
