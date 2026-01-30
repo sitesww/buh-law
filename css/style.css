@@ -246,6 +246,7 @@ a {
   z-index: 10;
 }
 
+
 .service-sidebar h3 {
   font-size: 20px;
   margin-bottom: 20px;
@@ -253,39 +254,35 @@ a {
   padding-left: 10px;
 }
 /* Стили для изящного списка услуг */
+/* Стили для списка услуг */
 .service-list {
-  list-style: none; /* Убираем стандартные точки */
-  padding-left: 5px;
-  margin-top: 25px;
-  display: table;          /* Позволяет блоку сжаться под ширину текста */
-  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
-  text-align: left;
+  list-style-type: none; /* Убираем стандартные точки, чтобы сделать свои */
+  padding-left: 10px;
+  margin: 20px 0;
 }
 
 .service-list li {
+  font-size: 1.25rem;    /* Увеличиваем размер текста (было примерно 1rem) */
+  line-height: 1.6;      /* Увеличиваем расстояние между строками */
+  margin-bottom: 12px;   /* Отступ между пунктами */
   position: relative;
-  padding-left: 30px; /* Место для нашей точки */
-  margin-bottom: 12px; /* Расстояние между пунктами */
-  font-size: 16px;
-  color: var(--text);
-  line-height: 1.5;
-  display: flex;
-  align-items: flex-start;
+  padding-left: 30px;    /* Место для новой точки */
+  color: #333;           /* Цвет текста */
 }
 
-/* Создаем свою точку через псевдоэлемент */
+/* Создаем свои крупные точки (маркеры) */
 .service-list li::before {
-  content: "";
+  content: "•";          /* Символ точки */
   position: absolute;
   left: 0;
-  top: 8px; /* Выравниваем по высоте первой строки */
-  width: 8px;
-  height: 8px;
-  background-color: var(--primary); /* Используем наш индиго/синий цвет */
-  border-radius: 50%; /* Делаем круглым */
-  box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
+  color: #166534;        /* Фирменный зеленый цвет (как в вашем проекте) */
+  font-size: 2rem;       /* Размер самой точки */
+  line-height: 1;        /* Центрируем точку относительно текста */
+  top: -5px;
+    box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
  /* Легкое свечение */
 }
+
 
 /* Стили для контентной части */
 .service-content p {
@@ -597,6 +594,7 @@ section p {
   color: var(--text);
 }
 /* Общий контейнер для иконки и текста */
+
 .info-item {
     display: flex;
     align-items: center; /* Выравнивает иконку и текст по центру по вертикали */
@@ -1037,6 +1035,7 @@ background: #0a2f18; /* Глубокий темно-зеленый, темнее
   content: "";
   position: absolute;
   left: 15px;
+  right: 15px;
   top: 10px;
   width: 8px;
   height: 8px;
