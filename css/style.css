@@ -52,7 +52,25 @@ a {
   text-decoration: none;
   color: inherit;
 }
+p, .about-text p, .service-card p, li {
+  font-size: 20px !important; /* Увеличиваем до 20px (было 16-18px) */
+  line-height: 1.7;           /* Делаем строки чуть свободнее */
+  color: var(--text);
+}
 
+/* АДАПТИВ ДЛЯ МОБИЛЬНЫХ (В конце файла style.css) */
+@media (max-width: 768px) {
+  
+  /* Делаем текст на телефоне крупным и читаемым */
+  p, .about-text p, .service-card p, li {
+    font-size: 20px !important; /* На мобильных 18px — это очень комфортно и крупно */
+    line-height: 1.6;
+  }
+
+  /* Если на телефоне заголовки кажутся слишком гигантскими, можно чуть усмирить их тут */
+  h1 { font-size: 36px !important; }
+  h2 { font-size: 28px !important; }
+}
 /* ================= CONTAINER ================= */
 .container {
     max-width: 1200px;
