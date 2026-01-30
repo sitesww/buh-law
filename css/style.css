@@ -974,23 +974,42 @@ background: #0a2f18; /* Глубокий темно-зеленый, темнее
 
 /* CONTACTS PAGE STYLES */
 .contacts-layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  flex-direction: column; /* Располагаем блоки друг под другом: сначала инфо, потом карта */
+  align-items: center;    /* Центрируем содержимое по горизонтали */
   gap: 40px;
   margin-top: 40px;
 }
-
+.contacts-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* Центрирует карточки внутри колонки */
+  width: 100%;
+  max-width: 500px;       /* Ограничиваем ширину, чтобы блоки не растягивались во весь экран */
+}
+.contacts-page h1 {
+  text-align: center;      /* Выравнивает текст по центру */
+  margin-bottom: 40px;     /* Добавляет аккуратный отступ до карточек */
+  width: 100%;             /* Гарантирует, что заголовок занимает всю ширину */
+}
 .info-item {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  flex-direction: column; /* Иконка будет над текстом */
+  align-items: center;    /* Центрируем иконку и текст внутри карточки */
+  text-align: center;     /* Центрируем сам текст */
+  gap: 15px;
   background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 30px;          /* Увеличим отступы для объема */
+  border-radius: 25px;    /* Скругление как на скрине */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  width: 100%;            /* Карточка занимает всю ширину contacts-info */
 }
 
 .map-container {
+  width: 100%;
+  max-width: 900px;       /* Ограничиваем ширину для аккуратного вида */
+  margin: 0 auto;         /* Центрируем блок */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -1348,4 +1367,12 @@ html {
   }
 }
   }
+  @media (min-width: 769px) {
+  .contacts-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Карточки в ряд по центру */
+    gap: 20px;
+  }
+}
 }
