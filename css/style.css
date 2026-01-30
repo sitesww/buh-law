@@ -113,11 +113,10 @@ a {
   background: var(--bg);
 }
 
-.services h2 {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: #1e293b;
+.services h2, .services-detail h2 {
+    font-size: 3rem !important;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 /* Контейнер для карточек — теперь 3 в ряд для баланса */
@@ -254,35 +253,37 @@ a {
   padding-left: 10px;
 }
 /* Стили для изящного списка услуг */
-/* Стили для списка услуг */
+/* Сам список и текст */
 .service-list {
-  list-style-type: none; /* Убираем стандартные точки, чтобы сделать свои */
-  padding-left: 10px;
-  margin: 20px 0;
+  list-style: none !important; /* Убираем стандартные точки */
+  padding-left: 0;
 }
 
 .service-list li {
-  font-size: 1.25rem;    /* Увеличиваем размер текста (было примерно 1rem) */
-  line-height: 1.6;      /* Увеличиваем расстояние между строками */
-  margin-bottom: 12px;   /* Отступ между пунктами */
+  
   position: relative;
-  padding-left: 30px;    /* Место для новой точки */
-  color: #333;           /* Цвет текста */
+  padding-left: 50px;      /* БОЛЬШОЙ ОТСТУП от точки до текста */
+  font-size: 24px;         /* Увеличенный текст (был 16-18px) */
+  line-height: 1.6;
+  margin-bottom: 18px;     /* Расстояние между пунктами */
+  list-style-type: none !important;
 }
 
-/* Создаем свои крупные точки (маркеры) */
+/* Сама точка */
 .service-list li::before {
-  content: "•";          /* Символ точки */
+  content: "•";            /* Используем символ, а не пустой блок */
   position: absolute;
   left: 0;
-  color: #166534;        /* Фирменный зеленый цвет (как в вашем проекте) */
-  font-size: 2rem;       /* Размер самой точки */
-  line-height: 1;        /* Центрируем точку относительно текста */
-  top: -5px;
-    box-shadow: 0 10px 20px rgba(6, 78, 59, 0.35);
- /* Легкое свечение */
+  top: -8px;               /* Поправляем положение по высоте */
+  font-size: 3.5rem;       /* ДЕЛАЕМ ТОЧКУ БОЛЬШОЙ */
+  color: var(--primary);   /* Ваш зеленый цвет */
+  
+  /* УДАЛЯЕМ старые настройки, которые создавали "квадраты" */
+  width: auto !important;  
+  height: auto !important;
+  background: none !important;
+  border-radius: 0;
 }
-
 
 /* Стили для контентной части */
 .service-content p {
@@ -1013,35 +1014,39 @@ background: #0a2f18; /* Глубокий темно-зеленый, темнее
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border: 1px solid #e2e8f0;
 }
-/* Единый стиль для списков во всех услугах */
-.custom-dots {
-  list-style: none !important; /* Убирает черную точку */
-  padding: 0;
-  display: table;          /* Позволяет блоку сжаться под ширину текста */
-  margin: 0 auto 30px;    /* Центрирует весь список по горизонтали */
-  text-align: left;
+/* Работает и для custom-dots, и для service-list */
+.custom-dots, .service-list {
+    list-style: none !important;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 900px; /* Чтобы список не растягивался слишком сильно по ширине */
 }
 
-/* Увеличение списка ИП/ООО */
-.custom-dots li {
-  font-size: 22px !important;
-  font-weight: 500;
-  margin-bottom: 20px;
-  color: var(--dark);
+.custom-dots li, .service-list li {
+    position: relative;
+    padding-left: 50px;       /* УВЕЛИЧЕННЫЙ ОТСТУП после точки */
+    font-size: 24px !important;/* КРУПНЫЙ ТЕКСТ */
+    line-height: 1.4;
+    margin-bottom: 25px;      /* Расстояние между пунктами */
+    list-style-type: none !important;
+    display: block;
 }
 
-/* Наша изящная синяя точка остается здесь */
-.custom-dots li::before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  top: 10px;
-  width: 8px;
-  height: 8px;
-  background-color: var(--primary);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
+/* Сама точка (символ) */
+.custom-dots li::before, .service-list li::before {
+    content: "•";             /* Используем текстовый символ точки */
+    position: absolute;
+    left: 0;
+    top: -5px;                /* Двигаем точку вверх/вниз для идеального выравнивания */
+    font-size: 3.5rem;        /* ДЕЛАЕМ ТОЧКУ БОЛЬШОЙ */
+    color: var(--primary);    /* Ваш зеленый цвет */
+    line-height: 1;
+    
+    /* СБРОС СТАРЫХ ОШИБОК */
+    width: auto !important;   
+    height: auto !important;
+    background: none !important;
+    border-radius: 0 !important;
 }
 
 /* Эффект при наведении */
@@ -1328,7 +1333,7 @@ html {
   .service-card p, .page li {
     font-size: 16px; /* Текст в карточках и списках */
     /* === УВЕЛИЧЕНИЕ СПИСКА (Кому подходят услуги) === */
-
+  }
 /* Увеличиваем шрифт только для этого списка */
 .custom-dots li {
   font-size: 22px !important; /* Было меньше, теперь крупно */
